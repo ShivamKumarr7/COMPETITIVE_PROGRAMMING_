@@ -1,0 +1,144 @@
+// DEQUE :-
+
+// Deque are also known as double ended queues.
+// They are sequence containers that can expand and contract at both the ends
+// They are similar to vectors but vectors allow insertion only at the end ..whereas deque on both sides.
+// Vectors elements are stored contiguosly...where as there is no gurantee in case of deque.
+
+
+// I) ITERATORS :- 
+
+// i) begin()  --> Returns an iterator to the first element of the deque or beginning
+// ii) end()  --> Returns an iterator to the theoritical last element after the last element.
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    deque<int>s = {1,2,3,4,5};
+    // lets create an iterator to this deque 
+    deque<int>:: iterator it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n";
+    deque<int>:: iterator lt = s.end();
+    for(lt = s.end() - 1;lt >= s.begin() ;lt --)
+    {
+        cout<<*(lt)<<" ";
+    }
+    return 0;
+}
+
+
+// II) CAPACITY :- 
+
+// i) size() --> Returns size 
+// ii) resize()  --> Changes sizes / Resizes the size 
+// iii) empty()  --> Test whether the container is empty 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    deque<int>s = {1,2,3,4,5};
+    cout<<s.size()<<"\n";
+    cout<<s.empty()<<"\n";
+    s.resize(2);
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    return 0;
+}
+
+
+// III) ELEMENT ACCESS :- 
+
+// i) operator[]  -->  Access element 
+// ii) at  -->  Access element 
+// iii) front --> Access first element 
+// iv) back --> Access last element 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    deque<int>s = {1,2,3,4,5};
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    cout<<"\n";
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s.at(i)<<" ";
+    }
+    cout<<"\n";
+    cout<<s.front()<<"\n";
+    cout<<s.back()<<"\n";
+    return 0;
+}
+
+
+// IV) MODIFIERS :-
+
+// i) push_back --> Add element at the end 
+// ii) push_front --> Add element to the front 
+// iii) pop_back  --> Delete element from the back 
+// iv) pop_front  --> Delete element from the front 
+// v) erase --> Erase elements 
+// vi) swap ---> Swap content 
+// vii) clear  ---> Clear content 
+// viii) emplace_front --> Construct and insert element at the front 
+// ix) emplace_back --> Construct and insert element at the end 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    deque<int>s = {1,2,3,4,5};
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    cout<<"\n";
+    s.push_back(6);
+    s.push_front(0);
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    cout<<"\n";
+    s.pop_back();
+    s.pop_front();
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    cout<<"\n";
+    // to erase an element i require an iterator 
+    deque<int>:: iterator it = s.begin();
+    s.erase(it);
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    cout<<"\n";
+    deque<int>temp = {101};
+    swap(s,temp);
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    s.clear();
+    for(int i=0;i<s.size();i++)
+    {
+        cout<<s[i]<<" ";
+    }
+    return 0;
+}
