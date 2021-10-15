@@ -1,0 +1,205 @@
+// Forward List :- 
+
+// Forward list in c++ stl implements singly linked list.
+// The drawback of a forward list is it cannot be iterated backwards and its elements cannot be accessed directly.
+
+// Forward list is preferred only when forward travesal is required.
+
+
+
+// OPERATIONS ON FORWARD LISTS :- 
+
+
+// I) ITERATORS :- 
+
+// i) before_begin --> Return iterator to before beginning  ---> This should not be dereferenced 
+// ii) begin  --> Return iterator to the beginning
+// iii) end --> Return iterator to the theoretical end after the last eleement ---> Should not be dereferenced 
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    forward_list<int>s = {1,2,3,4,5};
+    forward_list<int>:: iterator it = s.begin();
+    forward_list<int>:: iterator lt = s.before_begin();
+    forward_list<int>:: iterator tt = s.end();
+    
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    return 0;
+}
+
+
+
+// II) CAPACITY :- 
+
+// i) empty ---> test whether the list is empty 
+// ** It does not have any size function...like vectors or deque 
+
+
+/// III) ELEMENT ACCESS :- 
+
+// i) front --> Access first element 
+
+
+// IV) MODIFIERS :- 
+
+// i) push_front ---> Insert element at beginning 
+// ii) pop_front ---> Deletes first element 
+// iii) swap  --> swap content 
+// iv) resize --> changes size 
+// v) clear ---> clear content 
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    forward_list<int>s = {1,2,3,4,5};
+    forward_list<int>:: iterator it = s.begin();
+    
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    
+    cout<<"\n"<<"\n";
+    
+    s.push_front(10);
+    it = s.begin();
+    
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n"<<"\n";
+    
+    s.pop_front();
+    
+    it = s.begin();
+    
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n"<<"\n";
+    
+    forward_list<int>t = {9,8,7};
+    
+    forward_list<int>:: iterator  mp = t.begin();
+    for(;mp != t.end();mp++)
+    {
+        cout<<*(mp)<<" ";
+    }
+    cout<<"\n"<<"\n";
+    
+    swap(s,t);
+    
+    it = s.begin();
+    mp = t.begin();
+    
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n"<<"\n";
+    
+    for(;mp != t.end();mp++)
+    {
+        cout<<*(mp)<<" ";
+    }
+    cout<<"\n"<<"\n";
+    
+    
+    s.clear();
+    t.clear();
+    
+    it = s.begin();
+    mp = t.begin();
+    
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n"<<"\n";
+    
+    for(;mp != t.end();mp++)
+    {
+        cout<<*(mp)<<" ";
+    }
+    cout<<"\n"<<"\n";
+    return 0;
+}
+
+
+
+// IV) OPERATIONS :- 
+
+// i) remove --> Removes from the container all the elements that compare equal to the value.
+// ii) unique --> Removes duplicate values 
+// iii) merge ---> merge sorted lists 
+// iv) sort --> Sort elements in the container 
+// v) reverse ---> Reverse the order of the elements 
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    forward_list<int>s = {1,2,3,4,5,3,5,7,7,9,1};
+
+    s.remove(3);
+
+    forward_list<int>:: iterator it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    
+    cout<<"\n"<<"\n";
+    
+    s.unique();
+    
+    it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    
+    cout<<"\n"<<"\n";
+    
+    forward_list<int>temp1 = {101,102,103};
+    forward_list<int>temp2 = {201,202,203};
+    temp1.merge(temp2);
+    
+    forward_list<int>:: iterator tt = temp1.begin();
+    for(;tt != temp1.end();tt++)
+    {
+        cout<<*(tt)<<" ";
+    }
+    cout<<"\n"<<"\n";
+    
+    s.sort();
+    it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    
+    cout<<"\n"<<"\n";
+    
+    s.reverse();
+    it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    
+    cout<<"\n"<<"\n";
+    return 0;
+}
+
+
