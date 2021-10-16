@@ -1,0 +1,171 @@
+// LIST C++ STL :- 
+
+// List are sequence containers that allow non contiguos memory allocation.
+// As compared to vector..they are slow but insertion and deletion are quick.
+// Normally when we talk about list...we mean doubly Linked list.
+
+
+
+// I) ITERATORS :- 
+
+// i) begin --> Return iterator to beginning 
+// ii) end --> returns iterator to the theoritical end after the last element 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    list<int>s = {1,2,3,4,5};
+    // lets create an iterator to this doubly linked list 
+    list<int>:: iterator it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n";
+    // lets traverse the doubly linked list from backwards
+    list<int>:: iterator lt = s.end();
+    lt--;
+    for(;lt != s.begin(); lt--)
+    {
+        cout<<*(lt)<<" ";
+    }
+    cout<<*(lt--)<<" ";
+    cout<<"\n";
+    return 0;
+}
+
+
+// II) CAPACITY :- 
+
+// i) size ---> Returns the size of the container 
+// ii) empty ---> Checks if the container is empty 
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    list<int>s = {1,2,3,4,5};
+    cout<<s.size()<<"\n";
+    bool check = s.empty();
+    cout<<check<<"\n";
+    return 0;
+}
+
+
+// III) ELEMENT ACCESS :- 
+
+// i) front --> Access first element 
+// ii) back  --> Access last element 
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    list<int>s = {1,2,3,4,5};
+    cout<<s.front()<<"\n";
+    cout<<s.back()<<"\n";
+    return 0;
+}
+
+
+// IV) MODIFIERS :- 
+
+// i) push_front  --> Insert element at beginning 
+// ii) pop_front  --> Delete first element 
+// iii) push_back --> Inserts an element at the end 
+// iv) pop_back --> Deletes last element 
+// v) erase --> Erase elements
+// vi) swap  --> Swap content 
+// vii) resize ---> Changes size 
+// viii) clear ---> Clear content 
+// ix) emplace_front --> Construct and insert element at the beginning
+// x) emplace_back --> Construct and insert element at the end 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    list<int>s = {1,2,3,4,5};
+    list<int>:: iterator it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n";
+    s.push_front(0);
+    s.push_back(6);
+    
+    it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n";
+    
+    s.pop_front();
+    s.pop_back();
+    it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n";
+    
+    list<int>t = {101,102};
+    list<int>:: iterator st = t.begin();
+    for(;st != t.end();st++)
+    {
+        cout<<*(st)<<" ";
+    }
+    cout<<"\n";
+    swap(s,t);
+    it = s.begin();
+    st = t.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n";
+    for(;st != t.end();st++)
+    {
+        cout<<*(st)<<" ";
+    }
+    cout<<"\n";
+    // to erase an element ill have to take help of an iterator
+    it = s.begin();
+    s.erase(it);
+    it = s.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n";
+    s.clear();
+    t.clear();
+    it = s.begin();
+    st = t.begin();
+    for(;it != s.end();it++)
+    {
+        cout<<*(it)<<" ";
+    }
+    cout<<"\n";
+    for(;st != t.end();st++)
+    {
+        cout<<*(st)<<" ";
+    }
+    cout<<"\n";
+    return 0;
+}
+
+
+// V) OPERATIONS :- 
+
+// i) remove --> Remove elements with specific value 
+// ii) unique --> removes duplicate elements 
+// iii) merge --> Merge sorted lists 
+// iv) sort  --> Sort elements in the container 
+// v) reverse --> Reverse the order of elements 
+
