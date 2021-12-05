@@ -8,4 +8,4 @@ Also, I am learning new algotihms and data structures on a daily basis.
 
 I might do a few Codechef problems and will add them in this repository.
 
-Thanks You!
+Thank You!
