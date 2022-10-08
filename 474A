@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define mp make_pair
+#define pb push_back
+#define mod 1000000007
+#define pi 3.14159265
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+const int Max = 1e5 + 5;
+const int Bmax = 1e7 + 5;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    char asli[31] = {'q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l',';','z','x','c','v','b','n','m',',','.','/'};
+    char first;
+    cin>>first;
+    string parent;
+    cin>>parent;
+    if(first == 'L')
+    {
+        for(int i=0;i<parent.size();i++)
+        {
+            char s = parent[i];
+            for(int j=0;j<31;j++)
+            {
+                if(s == asli[j])
+                {
+                    cout<<asli[j+1];
+                }
+            }
+        }
+    }
+    if(first == 'R')
+    {
+        for(int i=0;i<parent.size();i++)
+        {
+            char s = parent[i];
+            for(int j=0;j<31;j++)
+            {
+                if(s == asli[j])
+                {
+                    cout<<asli[j-1];
+                }
+            }
+        }
+    }
+    return 0;
+}
