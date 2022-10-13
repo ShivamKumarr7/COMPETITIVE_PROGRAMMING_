@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    pair<int,int>s = {1,2};
+    cout<<s.first<<" "<<s.second<<"\n";
+    
+    pair<int,string>p = {2,"abc"};
+    cout<<p.first<<" "<<p.second<<"\n";
+    
+    pair<float,char>t = {1.456,'c'};
+    cout<<t.first<<" "<<t.second<<"\n";
+    
+    pair<int,int>q = make_pair(5,6);
+    cout<<q.first<<" "<<q.second<<"\n";
+    
+    pair<int,int>m = make_pair(9,11);
+    cout<<m.first<<" "<<m.second<<"\n";
+    
+    // ek array bna de of pairs 
+    int arr[3] = {1,2,3};
+    int brr[3] = {4,5,6};
+    pair<int,int> p_array[3];
+    for(int i=0;i<3;i++)
+    {
+        p_array[i].first = arr[i];
+        p_array[i].second = brr[i];
+    }
+    
+    // abb print krde ye pair ka array 
+    
+    for(int i=0;i<3;i++)
+    {
+        cout<<p_array[i].first<<" "<<p_array[i].second<<"\n";
+    }
+    
+    
+    // ek pair bna de pair and pair ka
+    
+    pair<pair<int,int>,pair<int,string>>special = make_pair(make_pair(100,200),make_pair(300,"try"));
+    cout<<special.first.first<<" "<<special.first.second<<"   "<<special.second.first<<" "<<special.second.second<<"\n";
+    cout<<"\n";
+    
+    pair<pair<int,int>,pair<int,int>>alag = {{1000,2000},{3000,4000}};
+    cout<<alag.first.first<<" "<<alag.first.second<<"  "<<alag.second.first<<" "<<alag.second.second<<"\n";
+    cout<<"\n";
+    return 0;
+}
