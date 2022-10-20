@@ -1,0 +1,133 @@
+// 1722C
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define pb push_back
+#define mp make_pair
+#define pi 3.14159265
+#define mod 1000000007
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+const int Max = 1e5 + 5;
+const int Bmax = 1e7 + 5;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        int times = n;
+        unordered_map<string,int>umap;
+        vector<string>first;
+        while(times--)
+        {
+            string s;
+            cin>>s;
+            umap.insert({s,1});
+            first.pb(s);
+        }
+        times = n;
+        vector<string>second;
+        while(times--)
+        {
+            string s;
+            cin>>s;
+            if(umap.find(s) != umap.end())
+            {
+                umap[s] = 2;
+            }
+            else
+            {
+                umap.insert({s,1});
+            }
+            second.pb(s);
+        }
+        times = n;
+        vector<string>third;
+        while(times--)
+        {
+            string s;
+            cin>>s;
+            if(umap.find(s) != umap.end())
+            {
+                if(umap[s] == 2)
+                {
+                    umap[s] = 3;
+                }
+                else
+                {
+                    umap[s] = 2;
+                }
+            }
+            else
+            {
+                umap.insert({s,1});
+            }
+            third.pb(s);
+        }
+        int first_player_points = 0;
+        int second_player_points = 0;
+        int third_player_points = 0;
+        for(int i=0;i<n;i++)
+        {
+            string m1 = first[i];
+            string m2 = second[i];
+            string m3 = third[i];
+            if(umap.find(m1) != umap.end())
+            {
+                int temp = umap[m1];
+                if(temp == 1)
+                {
+                    first_player_points += 3;
+                }
+                else if(temp == 2)
+                {
+                    first_player_points += 1;
+                }
+                else
+                {
+                    first_player_points += 0;
+                }
+            }
+            if(umap.find(m2) != umap.end())
+            {
+                int temp1 = umap[m2];
+                if(temp1 == 1)
+                {
+                    second_player_points += 3;
+                }
+                else if(temp1 == 2)
+                {
+                    second_player_points += 1;
+                }
+                else
+                {
+                    second_player_points += 0;
+                }
+            }
+            if(umap.find(m3) != umap.end())
+            {
+                int temp2 = umap[m3];
+                if(temp2 == 1)
+                {
+                    third_player_points += 3;
+                }
+                else if(temp2 == 2)
+                {
+                    third_player_points += 1;
+                }
+                else
+                {
+                    third_player_points += 0;
+                }
+            }
+        }
+        cout<<first_player_points<<" "<<second_player_points<<" "<<third_player_points<<"\n";
+    }
+    return 0;
+}
