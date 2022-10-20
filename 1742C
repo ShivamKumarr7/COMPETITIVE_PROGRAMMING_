@@ -1,0 +1,77 @@
+// 1742C
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define pb push_back
+#define mp make_pair
+#define mod 1000000007
+#define pi 3.14159265
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+const int Max = 1e5 + 5;
+const int Bmax = 1e7 + 5;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string s;
+        getline(cin,s);
+        vector<vector<char>>v(8,vector<char>(8,'.'));
+        for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                cin>>v[i][j];
+            }
+        }
+        // Red ke liye harr row ke first column se lekr last column tak dekho sab R hai ya nhi 
+        // bool red_ans = true;
+        for(int i=0;i<8;i++)
+        {
+            if(v[i][0] == 'R')
+            {
+                bool red_ans = true;
+                for(int j=0;j<8;j++)
+                {
+                    if(v[i][j] != 'R')
+                    {
+                        red_ans = false;
+                        break;
+                    }
+                }
+                if(red_ans == true)
+                {
+                    cout<<'R'<<"\n";
+                    break;
+                }
+            }
+        }
+        // bool blue_ans = true;
+        for(int i=0;i<8;i++)
+        {
+            if(v[0][i] == 'B')
+            {
+                bool blue_ans = true;
+                for(int j=0;j<8;j++)
+                {
+                    if(v[j][i] != 'B')
+                    {
+                        blue_ans = false;
+                        break;
+                    }
+                }
+                if(blue_ans == true)
+                {
+                    cout<<'B'<<"\n";
+                    break;
+                }
+            }
+        }
+    }
+    return 0;
+}
