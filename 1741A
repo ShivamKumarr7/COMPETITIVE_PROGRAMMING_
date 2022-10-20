@@ -1,0 +1,167 @@
+// 1741A 
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define pb push_back
+#define pi 3.14159265
+#define mod 000000007
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+const int Max = 1e5 + 5;
+const int Bmax = 1e7 + 5;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string a,b;
+        cin>>a>>b;
+        int first_value = 0;
+        int second_value = 0;
+        if(a[0] == 'M' && b[0] == 'M')
+        {
+            first_value = 1000;
+            second_value = 1000;
+        }
+        else if(a[0] == 'M' && b[0] != 'M')
+        {
+            int sizze = b.size();
+            first_value = 1000;
+            bool b_s_hai = false;
+            bool b_l_hai = false;
+            int ct = 0;
+            
+            for(int i=(sizze-1);i>=0;i--)
+            {
+                if(b[i] == 'S')
+                {
+                    b_s_hai = true;
+                }
+                if(b[i] == 'L')
+                {
+                    b_l_hai = true;
+                }
+                if(b[i] == 'X')
+                {
+                    ct = ct + 1;
+                }
+            }
+            
+            if(b_s_hai)
+            {
+                second_value = 100 - (ct);
+            }
+            else
+            {
+                second_value = 10000 + ct;
+            }
+        }
+        else if(a[0] != 'M' && b[0] == 'M')
+        {
+            int sizze = a.size();
+            second_value = 1000;
+            bool a_s_hai = false;
+            bool a_l_hai = false;
+            int ct = 0;
+            for(int i=(sizze-1);i>=0;i--)
+            {
+                if(a[i] == 'S')
+                {
+                    a_s_hai = true;
+                }
+                if(a[i] == 'L')
+                {
+                    a_l_hai = true;
+                }
+                if(a[i] == 'X')
+                {
+                    ct = ct + 1;
+                }
+            }
+            if(a_s_hai)
+            {
+                first_value = 100 - ct;
+            }
+            else
+            {
+                first_value = 10000 + ct;
+            }
+        }
+        else
+        {
+            // dono string me se koi medium 'M' nhi hai 
+            int a_sizze = a.size();
+            int b_sizze = b.size();
+            int ct_a = 0;
+            int ct_b = 0;
+            bool a_s_hai = false;
+            bool a_l_hai = false;
+            bool b_s_hai = false;
+            bool b_l_hai = false;
+            for(int i=(a_sizze-1);i>=0;i--)
+            {
+                if(a[i] == 'S')
+                {
+                    a_s_hai = true;
+                }
+                if(a[i] == 'L')
+                {
+                    a_l_hai = true;
+                }
+                if(a[i] == 'X')
+                {
+                    ct_a += 1;
+                }
+            }
+            for(int i=(b_sizze-1);i>=0;i--)
+            {
+                if(b[i] == 'S')
+                {
+                    b_s_hai = true;
+                }
+                if(b[i] == 'L')
+                {
+                    b_l_hai = true;
+                }
+                if(b[i] == 'X')
+                {
+                    ct_b += 1;
+                }
+            }
+            if(a_s_hai)
+            {
+                first_value = 100 - ct_a;
+            }
+            else
+            {
+                first_value = 10000 + ct_a;
+            }
+            if(b_s_hai)
+            {
+                second_value = 100 - ct_b;
+            }
+            else
+            {
+                second_value = 10000 + ct_b;
+            }
+        }
+        // cout<<"first value : "<<first_value<<"  "<<"second_value : "<<second_value<<"\n";
+        if(first_value == second_value)
+        {
+            cout<<"=\n";
+        }
+        else if(first_value > second_value)
+        {
+            cout<<">\n";
+        }
+        else
+        {
+            cout<<"<\n";
+        }
+    }
+    return 0;
+}
