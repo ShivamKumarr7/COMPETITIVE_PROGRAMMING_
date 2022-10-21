@@ -1,0 +1,51 @@
+// 1692B
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define mp make_pair
+#define pb push_back
+#define pi 3.14159265
+#define mod 1000000007
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+const int Max = 1e5 + 5;
+const int Bmax = 1e7 + 5;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        int times = n;
+        unordered_set<int>u;
+        int ct = 0;
+        while(times--)
+        {
+            int temp;
+            cin>>temp;
+            if(u.find(temp) != u.end())
+            {
+                ct = ct + 1;
+            }
+            else
+            {
+                u.insert(temp);
+            }
+        }
+        if(ct & 1)
+        {
+            ct = ct + 1;
+            cout<<(n - ct)<<"\n";
+        }
+        else
+        {
+            cout<<(n - ct)<<"\n";
+        }
+    }
+    return 0;
+}
