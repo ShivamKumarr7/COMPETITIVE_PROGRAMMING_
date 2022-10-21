@@ -1,0 +1,58 @@
+// 1692C
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define mp make_pair
+#define pb push_back
+#define pi 3.14159265
+#define mod 1000000007
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+const int Max = 1e5 + 5;
+const int Bmax = 1e7 + 5;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string s;
+        getline(cin,s);
+        vector<vector<char>>v(8,vector<char>(8));
+        for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                cin>>v[i][j];
+            }
+        }
+        bool ans = false;
+        int row = 0;
+        int col = 0;
+        for(int i=0;i<8;i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                if(v[i][j] == '#')
+                {
+                    if((i > 0) && (j > 0) && ((v[i-1][j-1]) == '#') && ((v[i-1][j+1]) == '#') && ((v[i+1][j-1]) == '#') && ((v[i+1][j+1]) == '#'))
+                    {
+                        ans = true;
+                        row = i;
+                        col = j;
+                        break;
+                    }
+                }
+            }
+            if(ans)
+            {
+                break;
+            }
+        }
+        cout<<(row+1)<<" "<<(col+1)<<"\n";
+    }
+    return 0;
+}
