@@ -1,0 +1,60 @@
+// 1675A
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define pb push_back
+#define mp make_pair
+#define ppb pop_back
+#define ff first
+#define ss second
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+const int Max = 1e5 + 5;
+const int Bmax = 1e7 + 5;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t = 1;
+    cin>>t;
+    while(t--)
+    {
+        ll a,b,c,x,y;
+        cin>>a>>b>>c>>x>>y;
+        vector<ll>s(3,0);
+        s[0] = a;
+        s[1] = b;
+        s[2] = c;
+        bool ans = true;
+        if(x > a)
+        {
+            ll diff = x - a;
+            if(s[2] < diff)
+            {
+                ans = false;
+            }
+            else
+            {
+                s[2] = s[2] - diff;
+            }
+        }
+        if((y > b) && (ans != false))
+        {
+            ll diff = y - b;
+            if(s[2] < diff)
+            {
+                ans = false;
+            }
+        }
+        if(ans)
+        {
+            cout<<"YES\n";
+        }
+        else
+        {
+            cout<<"NO\n";
+        }
+    }
+    return 0;
+}
