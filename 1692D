@@ -1,0 +1,69 @@
+// 1692D
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pb push_back
+#define mp make_pair
+#define mod 1000000007
+#define pi 3.14159265
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+#define ppb pop_back
+const int Max = 1e5 + 5;
+const int Bmax = 1e7 + 5;
+int main()
+{
+    ios_base::sync_with_stdio(false);cin.tie(NULL);
+    unordered_set<int>un;
+    for(int i=1;i<=351;i=i+70)
+    un.insert(i);
+    for(int i=602;i<=952;i=i+70)
+    un.insert(i);
+    for(int i=1203;i<=1414;i=i+70)
+    un.insert(i);
+    int t = 1;
+    cin>>t;
+    while(t--)
+    {
+        string s;
+        int x;
+        cin>>s>>x;
+        string hr = "";
+        hr.pb(s[0]);
+        hr.pb(s[1]);
+        int ghante = stoi(hr);
+        string minutes = "";
+        minutes.pb(s[3]);
+        minutes.pb(s[4]);
+        int minat = stoi(minutes);
+        int number = (ghante * 60) + (minat) + 1;
+        int vapis = number;
+        int ct = 0;
+        if(x == 1439)
+        {
+            cout<<(16)<<"\n";
+        }
+        else
+        {
+            if(un.find(number) != un.end())
+            {
+                ct += 1;
+            }
+            for(int i=1;;i++)
+            {
+                number = (number + x) % 1440;
+                if(number == vapis)
+                {
+                    break;
+                }
+                if(un.find(number) != un.end())
+                {
+                    ct += 1;
+                }
+            }
+            cout<<ct<<"\n";
+        }
+    }
+    return 0;
+}
