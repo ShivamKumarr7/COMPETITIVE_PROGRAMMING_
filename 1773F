@@ -1,0 +1,199 @@
+/* shivam */
+ 
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+#define fastio() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define INF 1e18
+#define PI 3.141592653589793238462
+#define MOD 1000000007
+#define all(x) (x).begin(), (x).end()
+ 
+#define debug(x)  cout<<#x<<" : "; _print(x); cout<<"\n";
+ 
+void _print(ll t) {cout << t;}
+void _print(int t) {cout << t;}
+void _print(string t) {cout << t;}
+void _print(char t) {cout << t;}
+void _print(double t) {cout << t;}
+void _print(bool t) {cout << t;}
+ 
+template <class T, class V> void _print(pair <T, V> p);
+template <class T> void _print(vector <T> v);
+template <class T> void _print(set <T> v);
+template <class T, class V> void _print(map <T, V> v);
+template <class T> void _print(multiset <T> v);
+template <class T> void _print(unordered_set <T> v);
+template <class T,class V> void _print(unordered_map <T,V> v);
+template <class T, class V> void _print(pair <T, V> p) {_print(p.ff); cout<<" "; _print(p.ss);}
+template <class T> void _print(vector <T> v) {for (T i : v) {_print(i); cout << " ";}}
+template <class T> void _print(set <T> v) {for (T i : v) {_print(i); cout << " ";}}
+template <class T> void _print(multiset <T> v) {for (T i : v) {_print(i); cout << " ";}}
+template <class T, class V> void _print(map <T, V> v) {for (auto i : v) {_print(i); cout << " ";}}
+template <class T> void _print(unordered_set <T> v)  {for(T i : v) {_print(i); cout<< " ";}}
+template <class T,class V> void _print(unordered_map <T,V> v) {for (auto i : v) {_print(i.ff); cout<<"->"; _print(i.ss); cout<<"\n";}}
+
+
+int main()
+{
+    fastio();
+    int total_matches;
+    cin>>total_matches;
+    int goals_scored;
+    cin>>goals_scored;
+    int goals_conceded;
+    cin>>goals_conceded;
+    if(total_matches == 1)
+    {
+        if(goals_scored == goals_conceded)
+        {
+            cout<<(1)<<"\n";
+            cout<<(goals_scored)<<":"<<goals_conceded<<"\n";
+        }
+        else
+        {
+            cout<<(0)<<"\n";
+            cout<<(goals_scored)<<":"<<goals_conceded<<"\n";
+        }
+    }
+    else
+    {
+        int mini_draws = total_matches - (goals_scored + goals_conceded);
+        if(mini_draws == 0)
+        {
+            // 4 0 4 
+            // 4 1 3 or 4 3 1
+            // 4 2 2 
+            cout<<(0)<<"\n";
+            // baaki print here 
+            vector<pair<int,int>>score_sheet(total_matches,{0,0});
+            int ct = 0;
+            for(int i=0;i<total_matches && goals_scored > 0;i++)
+            {
+                score_sheet[i].first = 1;
+                goals_scored -= 1;
+                ct += 1;
+            }
+            for(int i=ct;i<total_matches && goals_conceded > 0;i++)
+            {
+                score_sheet[i].second = 1;
+                goals_conceded -= 1;
+                ct += 1;
+            }
+            for(int i=0;i<total_matches;i++)
+            {
+                cout<<score_sheet[i].first<<":"<<score_sheet[i].second<<"\n";
+            }
+        }
+        else if(mini_draws < 0)
+        {
+            cout<<(0)<<"\n";
+            // 4 50 35 
+            // 3 5 2 
+            // 2 3 1 
+            // 3 50 48 
+            // 3 50 70 
+            vector<pair<int,int>>score_sheet(total_matches,{0,0});
+            int ct = 0;
+            int yha_put = 0;
+            for(int i=0;i<total_matches && goals_scored > 0;i++)
+            {
+                score_sheet[i].first = 1;
+                goals_scored -= 1;
+                ct += 1;
+                yha_put += 1;
+            }
+            if(goals_scored > 0)
+            {
+                score_sheet[total_matches-1].first = 1 + goals_scored;
+                for(int i=0;i<total_matches;i++)
+                {
+                    if(score_sheet[i].first != goals_conceded)
+                    {
+                        score_sheet[i].second = goals_conceded;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if(ct < total_matches)
+                {
+                   for(int i=ct;i<total_matches && goals_conceded > 0;i++)
+                    {
+                        score_sheet[i].second = 1;
+                        goals_conceded -= 1;
+                    }
+                    if(goals_conceded > 0)
+                    {
+                        score_sheet[total_matches-1].second = 1 + goals_conceded;
+                    } 
+                }
+                else
+                {
+                    bool mila_koi_unequal = false;
+                    for(int i=total_matches-1;i>=0;i--)
+                    {
+                        if(score_sheet[i].first != goals_conceded)
+                        {
+                            score_sheet[i].second = goals_conceded;
+                            mila_koi_unequal = true;
+                            break;
+                        }
+                    }
+                    if(mila_koi_unequal == false)
+                    {
+                        int temp = score_sheet[total_matches-1].first;
+                        score_sheet[total_matches-2].first += temp;
+                        score_sheet[total_matches-1].first = 0;
+                        score_sheet[total_matches-1].second = goals_conceded; 
+                    }
+                }
+            }
+            for(int i=0;i<total_matches;i++)
+            {
+                cout<<score_sheet[i].first<<":"<<score_sheet[i].second<<"\n";
+            }
+        }
+        else
+        {
+            // 3 1 0 
+            cout<<(mini_draws)<<"\n";
+            int times = mini_draws;
+            while(times--)
+            {
+                cout<<(0)<<":"<<(0)<<"\n";
+            }
+            // baaki print here
+            int matches_left = total_matches - mini_draws;
+            if(matches_left > 0)
+            {
+                vector<pair<int,int>>score_sheet(matches_left,{0,0});
+                int ct = 0;
+                for(int i=0;i<matches_left && goals_scored > 0;i++)
+                {
+                    score_sheet[i].first = 1;
+                    goals_scored -= 1;
+                    ct += 1;
+                }
+                for(int i=ct;i<matches_left && goals_conceded > 0;i++)
+                {
+                    score_sheet[i].second = 1;
+                    goals_conceded -= 1;
+                }
+                for(int i=0;i<matches_left;i++)
+                {
+                    cout<<score_sheet[i].first<<":"<<score_sheet[i].second<<"\n";
+                }
+            }
+        }
+    }
+    return 0;
+}
