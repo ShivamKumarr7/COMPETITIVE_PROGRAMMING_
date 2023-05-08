@@ -1,0 +1,95 @@
+/* shivam */
+ 
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define setbits(x) __builtin_popcount(x)
+#define zerobits(x) __builtin_ctz(x)
+#define fastio() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define INF 1e18
+#define PI 3.141592653589793238462
+#define MOD 1000000007
+#define all(x) (x).begin(), (x).end()
+ 
+#define debug(x)  cout<<#x<<" : "; _print(x); cout<<"\n";
+ 
+void _print(ll t) {cout << t;}
+void _print(int t) {cout << t;}
+void _print(string t) {cout << t;}
+void _print(char t) {cout << t;}
+void _print(double t) {cout << t;}
+void _print(bool t) {cout << t;}
+ 
+template <class T, class V> void _print(pair <T, V> p);
+template <class T> void _print(vector <T> v);
+template <class T> void _print(set <T> v);
+template <class T, class V> void _print(map <T, V> v);
+template <class T> void _print(multiset <T> v);
+template <class T> void _print(unordered_set <T> v);
+template <class T,class V> void _print(unordered_map <T,V> v);
+template <class T, class V> void _print(pair <T, V> p) {_print(p.ff); cout<<" "; _print(p.ss);}
+template <class T> void _print(vector <T> v) {for (T i : v) {_print(i); cout << " ";}}
+template <class T> void _print(set <T> v) {for (T i : v) {_print(i); cout << " ";}}
+template <class T> void _print(multiset <T> v) {for (T i : v) {_print(i); cout << " ";}}
+template <class T, class V> void _print(map <T, V> v) {for (auto i : v) {_print(i); cout << " ";}}
+template <class T> void _print(unordered_set <T> v)  {for(T i : v) {_print(i); cout<< " ";}}
+template <class T,class V> void _print(unordered_map <T,V> v) {for (auto i : v) {_print(i.ff); cout<<"->"; _print(i.ss); cout<<"\n";}}
+
+bool helper(int n,int m)
+{
+    if(n == m)
+    {
+        return true;
+    }
+    if(n < m)
+    {
+        return false;
+    }
+    if(n == 0)
+    {
+        return false;
+    }
+    int chota = n/3;
+    int bada = chota * 2;
+    if(chota + bada == n)
+    {
+        return helper(chota,m) || helper(bada,m);
+    }
+    else
+    {
+        return false;
+    }
+}
+
+int main()
+{
+    fastio();
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        ll n,m;
+        cin>>n>>m;
+        if(n < m)
+        {
+            cout<<"NO\n";
+        }
+        else if(n == m)
+        {
+            cout<<"YES\n";
+        }
+        else
+        {
+            // n is greater than m 
+            // (n = 6 ,m = 4) --> {4,2} me break kr skta hun 6 ko
+            bool check = helper(n,m);
+            check ? cout<<"YES\n" : cout<<"NO\n";
+        }
+    }
+    return 0;
+}
