@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+void flow()
+{
+    int n,right[26]={0},left[26]={0},r_distinct=0,l_distinct=0,ans=0;
+    string s;
+    cin >> n >> s;
+    
+    for(int i = 0 ; i < n ; i++)
+    {
+        if(right[s[i]-'a'] == 0)
+            r_distinct++;
+        right[s[i]-'a']++;
+    }
+    
+    for(int i = 0 ; i < n-1 ; i++)
+    {
+        if(left[s[i]-'a'] == 0)
+            l_distinct++;
+        left[s[i]-'a']++;
+        if(right[s[i]-'a'] == 1)
+            r_distinct--;
+        right[s[i]-'a']--;
+        
+        ans = max(ans,r_distinct+l_distinct);
+    }
+        
+    cout << ans << "\n";   
+}
+ 
+int main()
+{
+    int t;
+    cin >> t;
+    for(int i = 0 ; i < t ; i++)
+        flow();
+    return 0;
+}
