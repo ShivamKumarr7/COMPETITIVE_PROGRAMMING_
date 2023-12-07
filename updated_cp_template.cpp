@@ -56,34 +56,22 @@ ll ceil_div(ll a, ll b) {return a % b == 0 ? a / b : a / b + 1;}
  
 ll pwr(ll a, ll b) {a %= mod; ll res = 1; while (b > 0) {if (b & 1) res = res * a % mod; a = a * a % mod; b >>= 1;} return res;}
  
-bool is_prime(ll n)
+bool is_prime(ll n) 
 {
-    if(n<2)
-        return false;
-    for(ll x:{2,3,5,7,11,13,17,19,23,29,31,37})
+    if(n <= 1) return false;
+    if (n <= 3)  return true; 
+        
+    if (num % 2 == 0 || num % 3 == 0) 
     {
-        if(n==x)
-            return true;
-        bool flag=true;
-        ll r=1;
-        ll t=1;
-        while(r<=((n-1)>>__builtin_ctzll(n-1)))
+        return false; 
+    }
+    int range = sqrt(num);
+    for(int i=5;i<=range;i+=6)
+    {
+        if(num % i == 0 || num % (i + 2) == 0) 
         {
-            if(r&((n-1)>>__builtin_ctzll(n-1)))
-                t=((__int128)t*x)%n;
-            x=((__int128)x*x)%n;
-            r<<=1;
-        }
-        if(t==1||t==n-1)
-            flag=false;
-        for(r=0;r<__builtin_ctzll(n-1);r++)
-        {
-            t=((__int128)t*t)%n;
-            if(t==n-1)
-                flag=false;
-        }
-        if(flag)
             return false;
+        }
     }
     return true;
 }
