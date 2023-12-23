@@ -61,14 +61,14 @@ bool is_prime(ll n)
     if(n <= 1) return false;
     if (n <= 3)  return true; 
         
-    if (num % 2 == 0 || num % 3 == 0) 
+    if (n % 2 == 0 || n % 3 == 0) 
     {
         return false; 
     }
-    int range = sqrt(num);
+    int range = sqrt(n);
     for(int i=5;i<=range;i+=6)
     {
-        if(num % i == 0 || num % (i + 2) == 0) 
+        if(n % i == 0 || n % (i + 2) == 0) 
         {
             return false;
         }
